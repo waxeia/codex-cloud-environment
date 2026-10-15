@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>咪咪便签</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="widget" aria-label="桌面便签">
+      <div class="ear ear-left"></div>
+      <div class="ear ear-right"></div>
+
+      <header class="titlebar">
+        <div class="brand" aria-hidden="true">
+          <span class="eye"></span>
+          <span class="nose">ᵕ</span>
+          <span class="eye"></span>
+        </div>
+        <input id="title" class="title" maxlength="24" value="今天也要加油呀" aria-label="便签标题" />
+        <div class="window-actions">
+          <button id="pinButton" class="icon-button active" title="取消置顶" aria-label="切换置顶">●</button>
+          <button id="hideButton" class="icon-button" title="藏进托盘" aria-label="隐藏窗口">−</button>
+        </div>
+      </header>
+
+      <section class="note-wrap">
+        <textarea id="note" maxlength="2000" spellcheck="false" aria-label="便签内容" placeholder="在这里写点什么吧…"></textarea>
+        <div class="footer">
+          <span id="status">已自动保存</span>
+          <span class="paw" aria-hidden="true">ฅ</span>
+          <span id="counter">0 / 2000</span>
+        </div>
+      </section>
+
+      <div class="ghost-hint">点我回来 ฅ^•ﻌ•^ฅ</div>
+    </main>
+    <script src="renderer.js"></script>
+  </body>
+</html>
