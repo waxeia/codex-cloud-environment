@@ -2,11 +2,14 @@
   "name": "mimi-note-widget",
   "version": "1.0.0",
   "description": "一只会在桌面上悄悄变透明的可爱便签",
+  "author": "Waxeia",
+  "desktopName": "mimi-note-widget.desktop",
   "main": "src/main.js",
   "scripts": {
     "start": "electron .",
     "dev": "electron .",
-    "dist": "electron-builder"
+    "icons": "electron --no-sandbox --headless --disable-gpu --ozone-platform=headless scripts/generate-icons.js",
+    "dist": "npm run icons && electron-builder"
   },
   "devDependencies": {
     "electron": "^38.0.0",
@@ -15,6 +18,7 @@
   "build": {
     "appId": "com.mimi.note.widget",
     "productName": "咪咪便签",
+    "publish": [],
     "files": [
       "src/**/*",
       "package.json"
@@ -28,7 +32,9 @@
     },
     "linux": {
       "target": "AppImage",
-      "category": "Utility"
+      "category": "Utility",
+      "icon": "build/icons",
+      "syncDesktopName": true
     }
   }
 }

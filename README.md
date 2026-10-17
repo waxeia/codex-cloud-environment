@@ -2,6 +2,25 @@
 
 一个常驻桌面的可编辑小便签。30 秒没有点击、输入或滚动后，窗口会自动淡成半透明；再次点击即可恢复。
 
+## 从 GitHub 下载
+
+前往 [Releases](https://github.com/waxeia/codex-cloud-environment/releases/latest) 下载最新的 Linux AppImage。下载后执行：
+
+```bash
+chmod +x "咪咪便签-1.0.0.AppImage"
+./咪咪便签-1.0.0.AppImage
+```
+
+## 直接使用（Linux x86_64）
+
+在包含 AppImage 和启动脚本的目录中，可直接双击 `咪咪便签-1.0.0.AppImage`，或在终端执行：
+
+```bash
+./start.sh
+```
+
+如果桌面环境不允许双击启动，先执行 `chmod +x 咪咪便签-1.0.0.AppImage start.sh`。
+
 ## 功能
 
 - 无边框透明窗口，可拖动、缩放

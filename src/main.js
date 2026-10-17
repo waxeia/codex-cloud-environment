@@ -6,6 +6,7 @@ let mainWindow;
 let tray;
 let isQuitting = false;
 let pinned = true;
+const headlessTest = process.env.MIMI_HEADLESS_TEST === '1';
 
 const defaultBounds = { width: 360, height: 300 };
 
@@ -113,7 +114,24 @@ function createWindow() {
 
   mainWindow.setAlwaysOnTop(true, 'floating');
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
-  mainWindow.once('ready-to-show', () => mainWindow.show());
+  mainWindow.once('ready-to-show', () => {
+    if (!headlessTest) mainWindow.show();
+  });
+
+  if (headlessTest) {
+    mainWindow.webContents.once('did-finish-load', async () => {
+      const result = await mainWindow.webContents.executeJavaScript(`({
+        title: document.querySelector('#title')?.value,
+        noteReady: Boolean(document.querySelector('#note')),
+        pinReady: Boolean(window.widget?.togglePin),
+        ghostEntered: (enterGhostMode(), document.body.classList.contains('ghost')),
+        wokeAgain: (wakeUp(), !document.body.classList.contains('ghost'))
+      })`);
+      console.log(`HEADLESS_TEST_OK ${JSON.stringify(result)}`);
+      isQuitting = true;
+      app.quit();
+    });
+  }
 
   let saveTimer;
   const scheduleSave = () => {
@@ -143,7 +161,7 @@ ipcMain.on('hide-window', () => mainWindow?.hide());
 
 app.whenReady().then(() => {
   createWindow();
-  createTray();
+  if (!headlessTest) createTray();
   app.on('activate', showWindow);
 });
 

@@ -1,0 +1,52 @@
+name: Build Mimi Note Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "src/**"
+      - "build/**"
+      - "scripts/**"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/small-sticky-release.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mimi-note-release
+  cancel-in-progress: true
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build AppImage
+        run: npm run dist
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: mimi-note-v1.0.0
+          name: 咪咪便签 v1.0.0
+          body: |
+            Linux x86_64 桌面便签。下载 AppImage 后添加可执行权限即可运行。
+          files: dist/*.AppImage
+          fail_on_unmatched_files: true
+          overwrite_files: true
+          make_latest: true
