@@ -43,7 +43,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          old_asset_id="$(gh api "repos/${GITHUB_REPOSITORY}/releases/tags/mimi-note-v1.0.0" --jq '.assets[] | select(.name == "-1.0.0.AppImage") | .id' 2>/dev/null || true)"
+          old_asset_id="$(gh api "repos/${GITHUB_REPOSITORY}/releases/tags/mimi-note-v1.0.1" --jq '.assets[] | select(.name == "-1.0.1.AppImage") | .id' 2>/dev/null || true)"
           if [ -n "$old_asset_id" ]; then
             gh api --method DELETE "repos/${GITHUB_REPOSITORY}/releases/assets/${old_asset_id}"
           fi
@@ -51,8 +51,8 @@ jobs:
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: mimi-note-v1.0.0
-          name: 咪咪便签 v1.0.0
+          tag_name: mimi-note-v1.0.1
+          name: 咪咪便签 v1.0.1
           body: |
             Linux x86_64 桌面便签。Ubuntu 推荐下载 DEB 安装；也可下载 AppImage 直接运行。
           files: |

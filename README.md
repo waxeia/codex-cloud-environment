@@ -11,25 +11,25 @@
 推荐双击 `.deb` 文件使用“应用中心”安装，或在终端执行：
 
 ```bash
-sudo apt install ./Mimi-Note-1.0.0.deb
+sudo apt install ./Mimi-Note-1.0.1.deb
 ```
 
 安装后可从应用列表搜索“咪咪便签”。
 
 ## 直接使用（Linux x86_64）
 
-下载后可直接双击 `Mimi-Note-1.0.0.AppImage`，或在终端执行：
+下载后可直接双击 `Mimi-Note-1.0.1.AppImage`，或在终端执行：
 
 ```bash
 ./start.sh
 ```
 
-如果桌面环境不允许双击启动，先执行 `chmod +x Mimi-Note-1.0.0.AppImage start.sh`。
+如果桌面环境不允许双击启动，先执行 `chmod +x Mimi-Note-1.0.1.AppImage start.sh`。
 
 ## 功能
 
 - 无边框透明窗口，可拖动、缩放
-- 默认始终置顶，可随时切换
+- 默认采用普通窗口层级，点击其他软件后便签会被覆盖；也可手动开启置顶
 - 标题和正文自动保存
 - 自动记住窗口位置与大小
 - 30 秒无交互后透明化

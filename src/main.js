@@ -5,7 +5,7 @@ const path = require('node:path');
 let mainWindow;
 let tray;
 let isQuitting = false;
-let pinned = true;
+let pinned = false;
 const headlessTest = process.env.MIMI_HEADLESS_TEST === '1';
 
 const defaultBounds = { width: 360, height: 300 };
@@ -100,7 +100,7 @@ function createWindow() {
     frame: false,
     transparent: true,
     backgroundColor: '#00000000',
-    alwaysOnTop: true,
+    alwaysOnTop: false,
     resizable: true,
     hasShadow: true,
     show: false,
@@ -108,11 +108,11 @@ function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
-      nodeIntegration: false
+      nodeIntegration: false,
+      backgroundThrottling: false
     }
   });
 
-  mainWindow.setAlwaysOnTop(true, 'floating');
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
   mainWindow.once('ready-to-show', () => {
     if (!headlessTest) mainWindow.show();
@@ -127,6 +127,7 @@ function createWindow() {
         ghostEntered: (enterGhostMode(), document.body.classList.contains('ghost')),
         wokeAgain: (wakeUp(), !document.body.classList.contains('ghost'))
       })`);
+      result.alwaysOnTop = mainWindow.isAlwaysOnTop();
       console.log(`HEADLESS_TEST_OK ${JSON.stringify(result)}`);
       isQuitting = true;
       app.quit();
