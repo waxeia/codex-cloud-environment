@@ -54,8 +54,10 @@ jobs:
           tag_name: mimi-note-v1.0.0
           name: 咪咪便签 v1.0.0
           body: |
-            Linux x86_64 桌面便签。下载 AppImage 后添加可执行权限即可运行。
-          files: dist/*.AppImage
+            Linux x86_64 桌面便签。Ubuntu 推荐下载 DEB 安装；也可下载 AppImage 直接运行。
+          files: |
+            dist/*.AppImage
+            dist/*.deb
           fail_on_unmatched_files: true
           overwrite_files: true
           make_latest: true

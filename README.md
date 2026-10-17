@@ -4,16 +4,21 @@
 
 ## 从 GitHub 下载
 
-前往 [Releases](https://github.com/waxeia/codex-cloud-environment/releases/latest) 下载最新的 Linux AppImage。下载后执行：
+前往 [Releases](https://github.com/waxeia/codex-cloud-environment/releases/latest) 下载最新安装包。
+
+## Ubuntu 安装（x86_64）
+
+推荐双击 `.deb` 文件使用“应用中心”安装，或在终端执行：
 
 ```bash
-chmod +x "Mimi-Note-1.0.0.AppImage"
-./Mimi-Note-1.0.0.AppImage
+sudo apt install ./Mimi-Note-1.0.0.deb
 ```
+
+安装后可从应用列表搜索“咪咪便签”。
 
 ## 直接使用（Linux x86_64）
 
-在包含 AppImage 和启动脚本的目录中，可直接双击 `Mimi-Note-1.0.0.AppImage`，或在终端执行：
+下载后可直接双击 `Mimi-Note-1.0.0.AppImage`，或在终端执行：
 
 ```bash
 ./start.sh
