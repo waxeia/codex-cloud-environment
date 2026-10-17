@@ -39,15 +39,6 @@ jobs:
       - name: Build AppImage
         run: npm run dist
 
-      - name: Remove malformed legacy asset name
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          old_asset_id="$(gh api "repos/${GITHUB_REPOSITORY}/releases/tags/mimi-note-v1.0.1" --jq '.assets[] | select(.name == "-1.0.1.AppImage") | .id' 2>/dev/null || true)"
-          if [ -n "$old_asset_id" ]; then
-            gh api --method DELETE "repos/${GITHUB_REPOSITORY}/releases/assets/${old_asset_id}"
-          fi
-
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:
