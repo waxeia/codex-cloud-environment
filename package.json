@@ -34,6 +34,7 @@
       "target": "AppImage",
       "category": "Utility",
       "icon": "build/icons",
+      "artifactName": "Mimi-Note-${version}.${ext}",
       "syncDesktopName": true
     }
   }
